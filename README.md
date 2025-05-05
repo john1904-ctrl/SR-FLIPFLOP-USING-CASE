@@ -33,16 +33,70 @@ By using three variable K-Map, we can get the simplified expression for next sta
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
 **Procedure**
+```
+ 1. Type the program in Quartus software.
 
-/* write all the steps invloved */
+ 2. Compile and run the program.
 
+ 3. Generate the RTL schematic and save the logic diagram
+
+ 4. Create nodes for inputs and outputs to generate the timing diagram.
+
+ 5. For different input combinations generate the timing diagram
+
+```
 **PROGRAM**
+```
+Developed by:SATHISH KUMAR .M
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+RegisterNumber:212224230256
+
+```
+ Program for flipflops and verify its truth table in quartus using Verilog programming.
+
+```
+module sr_flipflop (
+    input clk,    // Clock signal
+    input reset,  // Active-high reset signal
+    input s,      // Set input
+    input r,      // Reset input
+    output reg q, // Output
+    output reg q_bar // Complement of output
+);
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            q <= 1'b0;      // Reset the flip-flop
+            q_bar <= 1'b1;  // Complement output
+        end
+        else begin
+            case ({s, r})
+                2'b00: ;             // No change
+                2'b01: begin         // Reset
+                    q <= 1'b0;
+                    q_bar <= 1'b1;
+                end
+                2'b10: begin         // Set
+                    q <= 1'b1;
+                    q_bar <= 1'b0;
+                end
+                2'b11: begin         // I
+```
+            
 
 **RTL LOGIC FOR FLIPFLOPS**
 
+![sr flip flop  circuit 1](https://github.com/user-attachments/assets/bd734bde-2e13-454f-9efb-e7fff1237d36)
+```
+
+
 **TIMING DIGRAMS FOR FLIP FLOPS**
+```
+![sr flip flop wave form 2](https://github.com/user-attachments/assets/c401f1f6-2170-40da-8633-ac5a49c64dab)
+
+
 
 **RESULTS**
+```
+ Thus the SR flipflop using verilog is implemented and validated their functionality using
+ their functional tables
+```
